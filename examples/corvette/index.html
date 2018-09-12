@@ -31,6 +31,9 @@
 		<link rel="stylesheet" href="../common.css"/>
 		<script src="../libs/three.min.js"></script>
 		<script src="../libs/loaders/BinaryLoader.js"></script>
+		<script src="../libs/loaders/GLTFLoader.js"></script>
+		<script src="../libs/loaders/DRACOLoader.js"></script>
+		
 
 		<script src="../libs/postprocessing/EffectComposer.js"></script>
 
@@ -100,6 +103,13 @@
 					let filmPass = new THREE.FilmPass(0.5, 0.5, 1448, false)
 					filmPass.renderToScreen = true
 					this.composer.addPass(filmPass)
+					
+					this.manager = new THREE.LoadingManager()
+					this.gltfLoader = new THREE.GLTFLoader(this.manager)
+
+					THREE.DRACOLoader.setDecoderPath("./libs/draco/")
+					this.dracoLoader = new THREE.DRACOLoader()
+					this.gltfLoader.setDRACOLoader(this.dracoLoader)
 				}
 
 				updateScene(frame){
@@ -209,6 +219,8 @@
 					var axesHelper = AxesHelper( 0.2 );
 		            this.floorGroup.add( axesHelper );
 					this.floorGroup.add(box)
+					
+					
 
 					// Add a few lights
 					this.scene.add(new THREE.AmbientLight('#FFF', 0.2))
