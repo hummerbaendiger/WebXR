@@ -29,10 +29,13 @@
 			}
 		</style>
 		<link rel="stylesheet" href="../common.css"/>
-		<script src="../libs/three.min.js"></script>
+
+		<script src="../../threeJS/three.min.js"></script>
 		<script src="../libs/loaders/BinaryLoader.js"></script>
-		<script src="../libs/loaders/GLTFLoader.js"></script>
-		<script src="../libs/loaders/DRACOLoader.js"></script>
+		<script src="../../threeJS/js/loaders/GLTFLoader.js"></script>
+		<script src="../../threeJS/js/loaders/DRACOLoader.js"></script>
+		
+		
 		
 
 		<script src="../libs/postprocessing/EffectComposer.js"></script>
@@ -71,6 +74,7 @@
 					this.geometries = []
 					this.femaleGeometry = null
 					this.maleGeometry = null
+					this.corvetteModel = null
 
 					this.colors = [
 						0xff4422,
@@ -105,11 +109,20 @@
 					this.composer.addPass(filmPass)
 					
 					this.manager = new THREE.LoadingManager()
-					this.gltfLoader = new THREE.GLTFLoader(this.manager)
+					this.gltfLoader = new THREE.GLTFLoader()
 
-					THREE.DRACOLoader.setDecoderPath("./libs/draco/")
+					THREE.DRACOLoader.setDecoderPath("../../threeJS/js/libs/draco/")
 					this.dracoLoader = new THREE.DRACOLoader()
 					this.gltfLoader.setDRACOLoader(this.dracoLoader)
+
+					this.meshes = [];
+
+
+					this.gltfLoader.load("../models/glb/corvette.glb", obj => {
+						this.corvetteModel = obj
+						this.geometries.push(obj)
+					})
+
 				}
 
 				updateScene(frame){
