@@ -51,13 +51,12 @@ class PageApp extends ThingsOnSurfacesApp {
 			this.corvetteModel.scene.traverse( child => {
 				this.childNode = child
 				if (child.isMesh) {
-					//this.corvetteMeshes.push(this.childNode)
-					this.geometries.push(this.childNode)
+					this.corvetteMeshes.push(this.childNode)
 				}
 			})
-			/*for (var i=0; i<this.corvetteMeshes.length; i++){
-				this.floorGroup.add(firstNode)
-			}*/
+			for (var i=0; i<this.corvetteMeshes.length; i++){
+				this.scene.add(this.corvetteMeshes[i])
+			}
 			//this.geometries.push(obj)
 		})
 
