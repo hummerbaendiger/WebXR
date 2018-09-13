@@ -12,6 +12,8 @@ class PageApp extends ThingsOnSurfacesApp {
 
 		this.childNode = null
 
+		this.initialized = false
+
 		this.colors = [
 			0xff4422,
 			0xff9955,
@@ -54,9 +56,7 @@ class PageApp extends ThingsOnSurfacesApp {
 					this.corvetteMeshes.push(this.childNode)
 				}
 			})
-			for (var i=0; i<this.corvetteMeshes.length; i++){
-				this.scene.add(this.corvetteMeshes[i])
-			}
+			
 			//this.geometries.push(obj)
 		})
 
@@ -76,6 +76,14 @@ class PageApp extends ThingsOnSurfacesApp {
 
 		
 
+	}
+
+	addCorvetteMeshes(){
+		for (var i=0; i<this.corvetteMeshes.length; i++){
+			this.scene.add(this.corvetteMeshes[i])
+			this.initialized=true
+		}
+		
 	}
 
 	updateScene(frame){
@@ -166,6 +174,9 @@ class PageApp extends ThingsOnSurfacesApp {
 				}
 			}
 			mesh.geometry.verticesNeedUpdate = true
+		}
+		if (this.initialized==false){
+			this.addCorvetteMeshes()
 		}
 	}
 
