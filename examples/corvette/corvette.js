@@ -105,7 +105,7 @@ class PageApp extends ThingsOnSurfacesApp {
 			corvetteGroup.add(this.corvetteMeshes[i])
 			this.initialized=true
 		}
-		corvetteGroup.scale.set(0.1,0.1,0.1)
+		corvetteGroup.scale.set(0.01,0.01,0.01)
 		this.scene.add(corvetteGroup)
 		
 		
