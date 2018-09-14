@@ -50,12 +50,33 @@ class PageApp extends ThingsOnSurfacesApp {
 		
 		gltfLoader.load("../models/glb/corvette.glb", obj => {
 			this.corvetteModel = obj
-			this.corvetteModel.scene.traverse( child => {
+			
+			CreateMaterialLibrary()
+			loadHDRReflection()
+			
+			
+			for (var i = 0; i < obj.scene.children.length; i++) 
+			{
+				
+              	var objName = obj.scene.children[i].name
+				objName = objName.slice(0, -3)
+				obj.scene.children[i].name = objName
+				this.corvetteMeshes.push(obj.scene.children[i])
+
+				assignMaterials(obj.scene.children[i])
+			}
+
+			
+
+			
+			
+			// Adds all single meshes
+			/*this.corvetteModel.scene.traverse( child => {
 				this.childNode = child
 				if (child.isMesh) {
 					this.corvetteMeshes.push(this.childNode)
 				}
-			})
+			})*/
 		})
 
 		//this.composer = new THREE.EffectComposer(this.renderer)
