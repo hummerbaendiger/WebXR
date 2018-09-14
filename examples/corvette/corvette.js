@@ -98,10 +98,16 @@ class PageApp extends ThingsOnSurfacesApp {
 	}
 
 	addCorvetteMeshes(){
+		if (this.corvetteMeshes.length==0) return
+		
+		var corvetteGroup = new THREE.Group()
 		for (var i=0; i<this.corvetteMeshes.length; i++){
-			this.scene.add(this.corvetteMeshes[i])
+			corvetteGroup.add(this.corvetteMeshes[i])
 			this.initialized=true
 		}
+		corvetteGroup.scale.set(0.1,0.1,0.1)
+		this.scene.add(corvetteGroup)
+		
 		
 	}
 
