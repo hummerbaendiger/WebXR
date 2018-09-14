@@ -56,13 +56,11 @@ class PageApp extends ThingsOnSurfacesApp {
 					this.corvetteMeshes.push(this.childNode)
 				}
 			})
-			
-			//this.geometries.push(obj)
 		})
 
 		this.composer = new THREE.EffectComposer(this.renderer)
 		this.composer.addPass(new THREE.RenderPass(this.scene, this.camera))
-		this.composer.addPass(new THREE.BloomPass(0.75))
+		//this.composer.addPass(new THREE.BloomPass(0.75))
 		let filmPass = new THREE.FilmPass(0.5, 0.5, 1448, false)
 		filmPass.renderToScreen = true
 		this.composer.addPass(filmPass)
