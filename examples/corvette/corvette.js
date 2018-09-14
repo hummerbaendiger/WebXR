@@ -178,10 +178,10 @@ class PageApp extends ThingsOnSurfacesApp {
 		}
 	}
 
-	doRender(){
-		this.renderer.clear()
-		this.composer.render(0.01)
-	}
+	//doRender(){
+		//this.renderer.clear()
+		//this.composer.render(0.01)
+	//}
 
 	// Called during construction to allow the app to populate this.scene
 	initializeScene(){
