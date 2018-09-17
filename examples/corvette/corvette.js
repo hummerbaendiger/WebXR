@@ -67,8 +67,8 @@ class PageApp extends ThingsOnSurfacesApp {
 			this.corvetteModel = obj
 			var parent
 
-			CreateMaterialLibrary()
 			loadHDRReflection(this.renderer)
+			CreateMaterialLibrary()
 
 			setupHelperGroups(this)
 

@@ -190,7 +190,7 @@ function createClone(obj) {
 function setupHelperGroups(mainWindow) {
 
     mainWindow.modelRoot = new THREE.Group();
-    mainWindow.modelRoot.scale.set(0.01,0.01,0.01)
+    mainWindow.modelRoot.scale.set(0.1,0.1,0.1)
     //mainWindow.modelRoot.position.set(-5,-5,-3)
     mainWindow.modelRoot.position.set(-4, -1, -3)
 
