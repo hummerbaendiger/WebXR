@@ -24,6 +24,10 @@ class PageApp extends ThingsOnSurfacesApp {
 			0xff99ff
 		]
 
+		this.renderer.gammaInput = true;
+		this.renderer.gammaOutput = true;
+
+
 		this.manager = new THREE.LoadingManager()
 		const gltfLoader = new THREE.GLTFLoader()
 
@@ -52,7 +56,7 @@ class PageApp extends ThingsOnSurfacesApp {
 			this.corvetteModel = obj
 			
 			CreateMaterialLibrary()
-			loadHDRReflection()
+			loadHDRReflection(this.renderer)
 			
 			
 			for (var i = 0; i < obj.scene.children.length; i++) 
@@ -222,7 +226,7 @@ class PageApp extends ThingsOnSurfacesApp {
 		this.floorGroup.add( axesHelper );
 		this.floorGroup.add(box)
 		
-		
+			
 
 		// Add a few lights
 		this.scene.add(new THREE.AmbientLight('#FFF', 0.2))

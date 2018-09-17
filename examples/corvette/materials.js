@@ -3,6 +3,7 @@ this.loaderc = new THREE.KTXLoader()
 this.paintPos = 1
 this.textureformat = 'dxt'
 
+this.envGUICurrent = "reflection000"
 
 this.paintTotal = [ 
                 
@@ -338,7 +339,7 @@ function CreateMaterialLibrary() {
     this.physicalMaterial = this.matPaint;
 }
 
-function loadHDRReflection() {
+function loadHDRReflection(renderer) {
     var genCubeUrls = function (prefix, postfix) {
         return [
             prefix + 'left' + postfix, prefix + 'right' + postfix,
@@ -350,9 +351,9 @@ function loadHDRReflection() {
     var hdrUrls = genCubeUrls('../textures/' + this.envGUICurrent + '/reflection.', ".hdr"); //paris
     new THREE.HDRCubeTextureLoader().load(THREE.UnsignedByteType, hdrUrls, function (hdrCubeMap) {
         var pmremGenerator = new THREE.PMREMGenerator(hdrCubeMap);
-        pmremGenerator.update(this.renderer);
+        pmremGenerator.update(renderer);
         var pmremCubeUVPacker = new THREE.PMREMCubeUVPacker(pmremGenerator.cubeLods);
-        pmremCubeUVPacker.update(this.renderer);
+        pmremCubeUVPacker.update(renderer);
         this.hdrCubeRenderTarget = pmremCubeUVPacker.CubeUVRenderTarget;
         this.hdrCubeRenderTarget.texture.encoding = THREE.RGBM16Encoding;
         this.matTire.envMap = this.matTread.envMap = this.matCaliper.envMap = this.matAlu.envMap = this.matAluDark.envMap = this.matAlu2.envMap = this.matGlasRed.envMap = this.matGlas.envMap = this.matPrimer.envMap = this.matChrome.envMap = this.matLogoRed.envMap = this.matMirror.envMap = this.matAlloy.envMap = this.matAlloyContrast.envMap = this.matAlloyDark.envMap = this.matGlasOrange.envMap = this.matWindowPrivat.envMap = this.matWindow.envMap = this.matMirror.envMap = this.standardMat.envMap = this.matPlasticDark.envMap = this.matPlastic.envMap = this.matPlasticGloss.envMap = this.matLicense.envMap = this.matDisk.envMap = this.matStripe.envMap = this.matPaint.envMap = this.matDSLogo.envMap = this.matMirrorGlas.envMap = this.hdrCubeRenderTarget.texture; //this.matBrakeDisc.envMap = 
