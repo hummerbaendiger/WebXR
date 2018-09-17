@@ -46,7 +46,7 @@ class PageApp extends ThingsOnSurfacesApp {
 
 
 		const loader = new THREE.BinaryLoader()
-		loader.load('../models/female02/Female02_bin.js', geometry => {
+		/*loader.load('../models/female02/Female02_bin.js', geometry => {
 			this.femaleGeometry = geometry
 			this.geometries.push(this.femaleGeometry)
 
@@ -58,7 +58,7 @@ class PageApp extends ThingsOnSurfacesApp {
 		loader.load('../models/male02/Male02_bin.js', geometry => {
 			this.maleGeometry = geometry
 			this.geometries.push(this.maleGeometry)
-		})
+		})*/
 
 
 
@@ -90,7 +90,7 @@ class PageApp extends ThingsOnSurfacesApp {
 			
 
 			parent = obj.scene;
-			console.log(obj.scene.children.length);
+			//console.log(obj.scene.children.length);
 			for (var i = 0; i < obj.scene.children.length; i++) {
 				var objName = obj.scene.children[i].name;
 				objName = objName.slice(0, -3);
