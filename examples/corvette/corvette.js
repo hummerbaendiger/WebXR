@@ -110,7 +110,7 @@ class PageApp extends ThingsOnSurfacesApp {
 			this.initialized=true
 		}
 		corvetteGroup.scale.set(0.01,0.01,0.01)
-		corvetteGroup.position.set(2,-2,0)
+		corvetteGroup.position.set(-4,-5,-3)
 		this.scene.add(corvetteGroup)
 		
 		
