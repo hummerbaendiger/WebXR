@@ -4,7 +4,7 @@ function prepareData(name, meshArray, mainWindow) {
 
     group.name = name;
 
-    if (name != 'blob') mainWindow.scene.add(group);
+    if (name != 'blob') mainWindow.modelRoot.add(group);
 
     for (var i = 0; i < meshArray.length; i++) {
         group.add(meshArray[i]);
@@ -26,7 +26,7 @@ function prepareData(name, meshArray, mainWindow) {
     if (name == 'door') {
         assignMaterials(group);
         clone = createClone(group);
-        mainWindow.scene.add(clone);
+        mainWindow.modelRoot.add(clone);
     }
     if (name == 'paint2') {
         assignMaterials(group);
@@ -35,7 +35,7 @@ function prepareData(name, meshArray, mainWindow) {
     } else if (name == 'frontlamp') {
         assignMaterials(group);
         clone = createClone(group);
-        mainWindow.scene.add(clone);
+        mainWindow.modelRoot.add(clone);
     } else if (name == 'front') {
         assignMaterials(group);
         group.add(createClone(meshArray[0]));
@@ -55,11 +55,11 @@ function prepareData(name, meshArray, mainWindow) {
             if (i != 13 && i != 14 && i != 15 && i != 16)
                 clone.add(createClone(meshArray[i]));
         }
-        mainWindow.scene.add(clone);
+        mainWindow.modelRoot.add(clone);
     } else if (name == 'rearlamp') {
         assignMaterials(group);
         clone = createClone(group);
-        mainWindow.scene.add(clone);
+        mainWindow.modelRoot.add(clone);
     } else if (name == 'brake_front') {
         assignMaterials(group);
         var boxFW = new THREE.Box3().setFromObject(group);
@@ -79,14 +79,14 @@ function prepareData(name, meshArray, mainWindow) {
     } else if (name == 'brake_rear') {
         assignMaterials(group);
         clone = createClone(group);
-        mainWindow.scene.add(clone);
+        mainWindow.modelRoot.add(clone);
     } else if (name == 'chrome') {
         assignMaterials(group);
         clone.add(createClone(meshArray[2]));
         clone.add(createClone(meshArray[3]));
         clone.add(createClone(meshArray[4]));
         clone.add(createClone(meshArray[5]));
-        mainWindow.scene.add(clone);
+        mainWindow.modelRoot.add(clone);
     } else if (name == 'parts') {
         assignMaterials(group);
         group.add(createClone(meshArray[3]));
@@ -106,7 +106,7 @@ function prepareData(name, meshArray, mainWindow) {
         // Other Blob
         group.rotation.z = THREE.Math.degToRad(0);
         mainWindow.blob = group;
-        mainWindow.scene.add(mainWindow.blob);
+        mainWindow.modelRoot.add(mainWindow.blob);
     } else if (name == 'window') {
         // Solution for alpha flackering issue 
         meshArray[0].renderOrder = 10000;
@@ -188,6 +188,12 @@ function createClone(obj) {
 }
 
 function setupHelperGroups(mainWindow) {
+
+    mainWindow.modelRoot = new THREE.Group();
+    mainWindow.modelRoot.scale.set(0.01,0.01,0.01)
+    //mainWindow.modelRoot.position.set(-5,-5,-3)
+    mainWindow.modelRoot.position.set(-4, -1.6, -3)
+
     mainWindow.pivotWheelFL = new THREE.Group();
     mainWindow.pivotWheelFR = new THREE.Group();
     mainWindow.pivotWheelRL = new THREE.Group();
@@ -210,24 +216,26 @@ function setupHelperGroups(mainWindow) {
     mainWindow.pivotWheelRL.position.x += 410;
     mainWindow.pivotWheelRL.position.y = 54.5;
     mainWindow.pivotWheelRL.position.z = 80;
-    mainWindow.scene.add(mainWindow.pivotWheelRL);
+    mainWindow.modelRoot.add(mainWindow.pivotWheelRL);
 
     mainWindow.pivotWheelRR.position.x = 410;
     mainWindow.pivotWheelRR.position.y = 54.5;
     mainWindow.pivotWheelRR.position.z -= 80;
-    mainWindow.scene.add(mainWindow.pivotWheelRR);
+    mainWindow.modelRoot.add(mainWindow.pivotWheelRR);
 
     mainWindow.pivotWheelFL.position.x = 139;
     mainWindow.pivotWheelFL.position.y = 53.5;
     mainWindow.pivotWheelFL.position.z = 81;
     mainWindow.pivotWheelFL.scale.set(.95, .95, .85);
     mainWindow.pivotWheelFL.rotation.y = THREE.Math.degToRad(30);
-    mainWindow.scene.add(mainWindow.pivotWheelFL);
+    mainWindow.modelRoot.add(mainWindow.pivotWheelFL);
     //               
 
     mainWindow.pivotWheelFR.position.x = 139;
     mainWindow.pivotWheelFR.position.y = 53.5;
     mainWindow.pivotWheelFR.position.z -= 81;
     mainWindow.pivotWheelFR.rotation.y = THREE.Math.degToRad(30);
-    mainWindow.scene.add(mainWindow.pivotWheelFR);
+    mainWindow.modelRoot.add(mainWindow.pivotWheelFR);
+
+    mainWindow.scene.add(mainWindow.modelRoot);
 }

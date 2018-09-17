@@ -20,6 +20,8 @@ class PageApp extends ThingsOnSurfacesApp {
         this.pivotWheelFL, this.pivotWheelFR, this.pivotWheelRL, this.pivotWheelRR;
         this.pivotWheelFLRot, this.pivotWheelFRRot, this.pivotWheelRLRot, this.pivotWheelRRRot;
 
+		this.modelRoot
+
 		this.colors = [
 			0xff4422,
 			0xff9955,
@@ -140,7 +142,7 @@ class PageApp extends ThingsOnSurfacesApp {
 
 	}
 
-	addCorvetteMeshes() {
+	/*addCorvetteMeshes() {
 		if (this.corvetteMeshes.length == 0) return
 
 		var corvetteGroup = new THREE.Group()
@@ -154,7 +156,7 @@ class PageApp extends ThingsOnSurfacesApp {
 		this.scene.add(corvetteGroup)
 
 
-	}
+	}*/
 
 	updateScene(frame) {
 		super.updateScene(frame)
@@ -246,7 +248,7 @@ class PageApp extends ThingsOnSurfacesApp {
 			mesh.geometry.verticesNeedUpdate = true
 		}
 		if (this.initialized == false) {
-			this.addCorvetteMeshes()
+			//this.addCorvetteMeshes()
 		}
 	}
 
