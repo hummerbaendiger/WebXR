@@ -166,7 +166,7 @@ function CreateMaterialLibrary() {
         reflectivity: this.paintTotal[this.paintPos - 1].reflectivity
     });
     //this.matPaint.map = createColorTexture('#' + this.matPaint.color.getHexString());
-    this.matPaint.color.setHex(this.matPaint.color.getHexString());
+    this.matPaint.color.setHex(this.paintTotal[paintPos].color);
     this.matMirror = new THREE.MeshPhysicalMaterial({
         //                        color: paintTotal[1],
         color: new THREE.Color().setHex(0),
