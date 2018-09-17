@@ -101,6 +101,8 @@ class PageApp extends ThingsOnSurfacesApp {
 
 			}
 
+			this.geometries.push(this.modelRoot)
+
 			//loadHDRReflection(this.renderer)
 
 
