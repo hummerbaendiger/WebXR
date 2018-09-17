@@ -287,7 +287,8 @@ class PageApp extends ThingsOnSurfacesApp {
 
 	createSceneGraphNode() {
 		const group = new THREE.Group()
-		group.add(this.createMesh(
+		group.add(this.modelRoot)
+		/*group.add(this.createMesh(
 			this.geometries[Math.floor(this.geometries.length * Math.random())],
 			0.006,
 			0, 0, 0,
@@ -295,7 +296,7 @@ class PageApp extends ThingsOnSurfacesApp {
 			this.colors[Math.floor(this.colors.length * Math.random())],
 			true
 		))
-		return group
+		return group*/
 	}
 
 	createMesh(originalGeometry, scale, x, y, z, pointSize, color, dynamic) {
