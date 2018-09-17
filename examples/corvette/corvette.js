@@ -15,6 +15,8 @@ class PageApp extends ThingsOnSurfacesApp {
 		this.initialized = false
 
 		var _this = this
+		
+		this.corvetteGroup = new THREE.Group()
 
 		this.wheelFL, this.wheelFR, this.wheelRL, this.wheelRR;
         this.pivotWheelFL, this.pivotWheelFR, this.pivotWheelRL, this.pivotWheelRR;
@@ -141,17 +143,14 @@ class PageApp extends ThingsOnSurfacesApp {
 	}
 
 	addCorvetteMeshes() {
-		if (this.corvetteMeshes.length == 0) return
+		if (this.corvetteGroup.children.length == 0) return
 
-		var corvetteGroup = new THREE.Group()
-		for (var i = 0; i < this.corvetteMeshes.length; i++) {
-			corvetteGroup.add(this.corvetteMeshes[i])
-			this.initialized = true
-		}
-		corvetteGroup.scale.set(0.01, 0.01, 0.01)
-		corvetteGroup.position.set(-4,-5,-3)
+		this.initialized = true
+		
+		this.corvetteGroup.scale.set(0.01, 0.01, 0.01)
+		this.corvetteGroup.position.set(-4,-5,-3)
 		//corvetteGroup.position.set(-4, -1.6, -3)
-		this.scene.add(corvetteGroup)
+		this.scene.add(this.corvetteGroup)
 
 
 	}
@@ -246,7 +245,7 @@ class PageApp extends ThingsOnSurfacesApp {
 			mesh.geometry.verticesNeedUpdate = true
 		}
 		if (this.initialized == false) {
-			this.addCorvetteMeshes()
+			//this.addCorvetteMeshes()
 		}
 	}
 
