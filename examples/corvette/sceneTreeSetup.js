@@ -1,17 +1,17 @@
-function prepareData(name, meshArray) {
+function prepareData(name, meshArray, mainWindow) {
     var group = new THREE.Group();
     var clone = new THREE.Group();
 
     group.name = name;
 
-    if (name != 'blob') _this.model.add(group);
+    if (name != 'blob') mainWindow.scene.add(group);
 
     for (var i = 0; i < meshArray.length; i++) {
         group.add(meshArray[i]);
 
         meshArray[i].castShadow = true;
         meshArray[i].receiveShadow = true;
-        meshArray[i].material = _this.standardMat;
+        meshArray[i].material = mainWindow.standardMat;
     }
     if (name == 'simple') {
         group.scale.set(5, 5, 5);
@@ -22,12 +22,11 @@ function prepareData(name, meshArray) {
         group.add(createClone(meshArray[2]));
 
     }
-    if (name == 'trunk') {
-    }
+    if (name == 'trunk') {}
     if (name == 'door') {
         assignMaterials(group);
         clone = createClone(group);
-        _this.model.add(clone);
+        mainWindow.scene.add(clone);
     }
     if (name == 'paint2') {
         assignMaterials(group);
@@ -36,7 +35,7 @@ function prepareData(name, meshArray) {
     } else if (name == 'frontlamp') {
         assignMaterials(group);
         clone = createClone(group);
-        _this.model.add(clone);
+        mainWindow.scene.add(clone);
     } else if (name == 'front') {
         assignMaterials(group);
         group.add(createClone(meshArray[0]));
@@ -56,11 +55,11 @@ function prepareData(name, meshArray) {
             if (i != 13 && i != 14 && i != 15 && i != 16)
                 clone.add(createClone(meshArray[i]));
         }
-        _this.model.add(clone);
+        mainWindow.scene.add(clone);
     } else if (name == 'rearlamp') {
         assignMaterials(group);
         clone = createClone(group);
-        _this.model.add(clone);
+        mainWindow.scene.add(clone);
     } else if (name == 'brake_front') {
         assignMaterials(group);
         var boxFW = new THREE.Box3().setFromObject(group);
@@ -70,24 +69,24 @@ function prepareData(name, meshArray) {
             group.children[j].position.multiplyScalar(-1);
         }
 
-        _this.pivotWheelFL.add(group);
+        mainWindow.pivotWheelFL.add(group);
         clone = createClone(group);
 
-        _this.pivotWheelFR.add(clone);
+        mainWindow.pivotWheelFR.add(clone);
         clone.position.x -= 139;
         clone.position.y -= 53.5;
         clone.position.z += 81;
     } else if (name == 'brake_rear') {
         assignMaterials(group);
         clone = createClone(group);
-        _this.model.add(clone);
+        mainWindow.scene.add(clone);
     } else if (name == 'chrome') {
         assignMaterials(group);
         clone.add(createClone(meshArray[2]));
         clone.add(createClone(meshArray[3]));
         clone.add(createClone(meshArray[4]));
         clone.add(createClone(meshArray[5]));
-        _this.model.add(clone);
+        mainWindow.scene.add(clone);
     } else if (name == 'parts') {
         assignMaterials(group);
         group.add(createClone(meshArray[3]));
@@ -99,53 +98,136 @@ function prepareData(name, meshArray) {
 
     } else if (name == 'blob') {
 
-        meshArray[0].material = _this.matBlob;
+        meshArray[0].material = mainWindow.matBlob;
         group.rotation.z = THREE.Math.degToRad(180);
         group.position.y -= 10;
         group.position.x = 260;
 
         // Other Blob
         group.rotation.z = THREE.Math.degToRad(0);
-        _this.blob = group;
-        _this.scene.add(_this.blob);
+        mainWindow.blob = group;
+        mainWindow.scene.add(mainWindow.blob);
     } else if (name == 'window') {
         // Solution for alpha flackering issue 
         meshArray[0].renderOrder = 10000;
-    }
+    } else if (name.indexOf('wheel') != -1) {
 
-    else if (name.indexOf('wheel') != -1) {
+        mainWindow.pivotWheelRLRot.remove(mainWindow.wheelRL);
+        mainWindow.pivotWheelRRRot.remove(mainWindow.wheelRR);
+        mainWindow.pivotWheelFLRot.remove(mainWindow.wheelFL);
+        mainWindow.pivotWheelFRRot.remove(mainWindow.wheelFR);
 
-        _this.pivotWheelRLRot.remove(_this.wheelRL);
-        _this.pivotWheelRRRot.remove(_this.wheelRR);
-        _this.pivotWheelFLRot.remove(_this.wheelFL);
-        _this.pivotWheelFRRot.remove(_this.wheelFR);
-
-        _this.wheelFL = group;
+        mainWindow.wheelFL = group;
 
         assignMaterials(group);
 
-        var boxFW = new THREE.Box3().setFromObject(_this.wheelFL);
+        var boxFW = new THREE.Box3().setFromObject(mainWindow.wheelFL);
 
-        for (var j = 0; j < _this.wheelFL.children.length; j++) {
-            boxFW.getCenter(_this.wheelFL.children[j].position);
+        for (var j = 0; j < mainWindow.wheelFL.children.length; j++) {
+            boxFW.getCenter(mainWindow.wheelFL.children[j].position);
             // this re-sets the mesh position
 
-            _this.wheelFL.children[j].position.multiplyScalar(-1);
+            mainWindow.wheelFL.children[j].position.multiplyScalar(-1);
         }
 
-        _this.wheelFR = _this.wheelFL.clone();
-        _this.wheelFR.rotation.y = THREE.Math.degToRad(180);
+        mainWindow.wheelFR = mainWindow.wheelFL.clone();
+        mainWindow.wheelFR.rotation.y = THREE.Math.degToRad(180);
         //
-        _this.wheelRL = _this.wheelFL.clone();
+        mainWindow.wheelRL = mainWindow.wheelFL.clone();
 
-        _this.wheelRR = _this.wheelRL.clone();
-        _this.wheelRR.rotation.y = THREE.Math.degToRad(180);
-        _this.pivotWheelFLRot.add(_this.wheelFL);
-        _this.pivotWheelFRRot.add(_this.wheelFR);
-        _this.pivotWheelRLRot.add(_this.wheelRL);
-        _this.pivotWheelRRRot.add(_this.wheelRR);
-  
+        mainWindow.wheelRR = mainWindow.wheelRL.clone();
+        mainWindow.wheelRR.rotation.y = THREE.Math.degToRad(180);
+        mainWindow.pivotWheelFLRot.add(mainWindow.wheelFL);
+        mainWindow.pivotWheelFRRot.add(mainWindow.wheelFR);
+        mainWindow.pivotWheelRLRot.add(mainWindow.wheelRL);
+        mainWindow.pivotWheelRRRot.add(mainWindow.wheelRR);
+
     } else {
         assignMaterials(group);
     }
+}
+
+function createClone(obj) {
+
+    var clonedObj;
+    //                var materialClone;
+    var mS = (new THREE.Matrix4()).identity();
+    //set -1 to the corresponding axis
+    //                mS.elements[10] = -1;
+    mS.elements[10] = -1;
+
+    if (obj.type == 'Object3D' || obj.type == 'Group') {
+
+        if (obj.type == 'Object3D')
+            clonedObj = new THREE.Object3D();
+        else
+            clonedObj = new THREE.Group();
+        clonedObj.applyMatrix(mS);
+
+        for (var j = 0; j < obj.children.length; j++) {
+            //                        materialClone = obj.children[j].material.clone();
+            var newMesh = new THREE.Mesh(obj.children[j].geometry.clone(), obj.children[j].material);
+            if (obj.children[j].castShadow) newMesh.castShadow = true;
+            if (obj.children[j].receiveShadow) newMesh.receiveShadow = true;
+            newMesh.material.side = 2; // Clickable clones = 2
+            newMesh.material.shadowSide = 1;
+            clonedObj.add(newMesh);
+        }
+    } else if (obj.type == 'Mesh') {
+        clonedObj = new THREE.Mesh(obj.geometry.clone(), obj.material); //obj.material.clone()
+        if (obj.castShadow) clonedObj.castShadow = true;
+        if (obj.receiveShadow) clonedObj.receiveShadow = true;
+        clonedObj.applyMatrix(mS);
+        clonedObj.material.side = 2; // Clickable clones = 2
+        clonedObj.material.shadowSide = 1;
+
+    }
+    //                console.log(clonedObj);
+    return clonedObj;
+
+}
+
+function setupHelperGroups(mainWindow) {
+    mainWindow.pivotWheelFL = new THREE.Group();
+    mainWindow.pivotWheelFR = new THREE.Group();
+    mainWindow.pivotWheelRL = new THREE.Group();
+    mainWindow.pivotWheelRR = new THREE.Group();
+    mainWindow.pivotWheelFL.name = 'wheelFL';
+    mainWindow.pivotWheelFR.name = 'wheelFR';
+    mainWindow.pivotWheelRL.name = 'wheelRL';
+    mainWindow.pivotWheelRR.name = 'wheelRR';
+
+    mainWindow.pivotWheelFLRot = new THREE.Group();
+    mainWindow.pivotWheelFL.add(mainWindow.pivotWheelFLRot);
+    mainWindow.pivotWheelFRRot = new THREE.Group();
+    mainWindow.pivotWheelFR.add(mainWindow.pivotWheelFRRot);
+
+    mainWindow.pivotWheelRLRot = new THREE.Group();
+    mainWindow.pivotWheelRL.add(mainWindow.pivotWheelRLRot);
+    mainWindow.pivotWheelRRRot = new THREE.Group();
+    mainWindow.pivotWheelRR.add(mainWindow.pivotWheelRRRot);
+
+    mainWindow.pivotWheelRL.position.x += 410;
+    mainWindow.pivotWheelRL.position.y = 54.5;
+    mainWindow.pivotWheelRL.position.z = 80;
+    mainWindow.scene.add(mainWindow.pivotWheelRL);
+
+    mainWindow.pivotWheelRR.position.x = 410;
+    mainWindow.pivotWheelRR.position.y = 54.5;
+    mainWindow.pivotWheelRR.position.z -= 80;
+    mainWindow.scene.add(mainWindow.pivotWheelRR);
+
+    mainWindow.pivotWheelFL.position.x = 139;
+    mainWindow.pivotWheelFL.position.y = 53.5;
+    mainWindow.pivotWheelFL.position.z = 81;
+    mainWindow.pivotWheelFL.scale.set(.95, .95, .85);
+    mainWindow.pivotWheelFL.rotation.y = THREE.Math.degToRad(30);
+    mainWindow.scene.add(mainWindow.pivotWheelFL);
+    //               
+
+    mainWindow.pivotWheelFR.position.x = 139;
+    mainWindow.pivotWheelFR.position.y = 53.5;
+    mainWindow.pivotWheelFR.position.z -= 81;
+    mainWindow.pivotWheelFR.rotation.y = THREE.Math.degToRad(30);
+    mainWindow.scene.add(mainWindow.pivotWheelFR);
 }
