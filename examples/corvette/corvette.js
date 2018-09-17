@@ -99,7 +99,8 @@ class PageApp extends ThingsOnSurfacesApp {
 				prepareData(objName, _this.meshes, this);
 
 			}
-
+			
+			this.geometries.push(this.modelRoot)
 
 			/*for (var i = 0; i < obj.scene.children.length; i++) {
 
