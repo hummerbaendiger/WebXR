@@ -402,6 +402,7 @@ function assignMaterials(model) {
         model.children[0].material = this.matGlasDark;
         model.children[1].material = this.matChrome;
         model.children[2].material = this.matGlas;
+        model.children[3].material = this.matGlas;
         model.children[4].material = this.matAlu;
         model.children[5].material = this.matChrome;
         model.children[6].material = this.matPlasticGloss
@@ -520,4 +521,9 @@ function assignMaterials(model) {
 
     }
 
+    for(var i=0; i<model.children.length; i++){
+        if(model.children[i].material==undefined) {
+            model.children[i].material = this.matSimple
+        }
+    }
 }
