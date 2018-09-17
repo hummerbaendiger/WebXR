@@ -18,7 +18,7 @@ this.paintTotal = [
     {code:'G1G',name:'Longbeach Red Metallic Tintcoat', color:0x7C1E27,roughness: .6,metalness: .2,clearCoat: 1,clearCoatRoughness: 0,reflectivity: 0,envMapIntensity: .6},
 ];
 
-function CreateMaterialLibrary() {
+function CreateMaterialLibrary(mainWindow) {
     this.matSimple = new THREE.MeshStandardMaterial({
         color: 0x555555,
         side: 2
@@ -338,6 +338,8 @@ function CreateMaterialLibrary() {
         side: 2
     });
     this.physicalMaterial = this.matPaint;
+
+    loadHDRReflection (mainWindow.renderer)
 }
 
 function loadHDRReflection(renderer) {

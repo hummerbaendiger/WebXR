@@ -60,7 +60,7 @@ class PageApp extends ThingsOnSurfacesApp {
 			this.geometries.push(this.maleGeometry)
 		})*/
 
-
+		CreateMaterialLibrary(this)
 
 
 		gltfLoader.load("../models/glb/corvette.glb", obj => {
@@ -68,8 +68,8 @@ class PageApp extends ThingsOnSurfacesApp {
 			var parent
 
 			
-			CreateMaterialLibrary()
-			loadHDRReflection(this.renderer)
+			
+			
 
 			setupHelperGroups(this)
 
@@ -100,6 +100,8 @@ class PageApp extends ThingsOnSurfacesApp {
 				prepareData(objName, _this.meshes, this);
 
 			}
+
+			//loadHDRReflection(this.renderer)
 
 
 			/*for (var i = 0; i < obj.scene.children.length; i++) {
