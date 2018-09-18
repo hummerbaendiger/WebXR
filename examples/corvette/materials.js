@@ -5,18 +5,129 @@ this.textureformat = 'dxt'
 
 this.envGUICurrent = "reflection000"
 
-this.paintTotal = [ 
-                
-    {code:'GC6',name:'Corvette Racing Yellow Tintcoat', color:0xFFC32B,roughness: .6,metalness: .2,clearCoat: 1,clearCoatRoughness: 0,reflectivity: 0,envMapIntensity: .6},
-    {code:'G8G',name:'Arctic White', color:0xfffaee,roughness: 0.8,metalness: 0.2,clearCoat: .7,clearCoatRoughness: 0,reflectivity: 0,envMapIntensity: 0.6},
-    {code:'GKZ',name:'Torch Red', color:0xE11313,roughness: .6,metalness: .2,clearCoat: 1,clearCoatRoughness: 0,reflectivity: 0,envMapIntensity: .6},
-    {code:'GBA',name:'Black', color:0,roughness: 0.5,metalness: 0.5,clearCoat: 1,clearCoatRoughness: 0.1,reflectivity: 0,envMapIntensity: 0.8},
-    {code:'G7Q',name:'Watkins Glen Gray Metallic', color:0x2A3233,roughness: 0.6,metalness: 0.8,clearCoat: 1,clearCoatRoughness: 0,reflectivity: 1,envMapIntensity: .8},
-    {code:'G1F',name:'Ceramic Matrix Gray', color:0xC0CDDA,roughness: 0.6,metalness: 0.7,clearCoat: 1,clearCoatRoughness: 0,reflectivity: 1,envMapIntensity: .7},
-    {code:'GAN',name:'Blade Silver Metallic', color:0xC6CCD2,roughness: 0.6,metalness: 0.9,clearCoat: 1,clearCoatRoughness: 0,reflectivity: 1,envMapIntensity: 0.7},
-    {code:'GTR',name:'Admiral Blue Metallic', color:0x13377C,roughness: 0.6,metalness: 0.9,clearCoat: 1,clearCoatRoughness: 0,reflectivity: 1,envMapIntensity: 0.6},
-    {code:'G1G',name:'Longbeach Red Metallic Tintcoat', color:0x7C1E27,roughness: .6,metalness: .2,clearCoat: 1,clearCoatRoughness: 0,reflectivity: 0,envMapIntensity: .6},
+this.paintTotal = [
+
+    {
+        code: 'GC6',
+        name: 'Corvette Racing Yellow Tintcoat',
+        color: 0xFFC32B,
+        roughness: .6,
+        metalness: .2,
+        clearCoat: 1,
+        clearCoatRoughness: 0,
+        reflectivity: 0,
+        envMapIntensity: .6
+    },
+    {
+        code: 'G8G',
+        name: 'Arctic White',
+        color: 0xfffaee,
+        roughness: 0.8,
+        metalness: 0.2,
+        clearCoat: .7,
+        clearCoatRoughness: 0,
+        reflectivity: 0,
+        envMapIntensity: 0.6
+    },
+    {
+        code: 'GKZ',
+        name: 'Torch Red',
+        color: 0xE11313,
+        roughness: .6,
+        metalness: .2,
+        clearCoat: 1,
+        clearCoatRoughness: 0,
+        reflectivity: 0,
+        envMapIntensity: .6
+    },
+    {
+        code: 'GBA',
+        name: 'Black',
+        color: 0,
+        roughness: 0.5,
+        metalness: 0.5,
+        clearCoat: 1,
+        clearCoatRoughness: 0.1,
+        reflectivity: 0,
+        envMapIntensity: 0.8
+    },
+    {
+        code: 'G7Q',
+        name: 'Watkins Glen Gray Metallic',
+        color: 0x2A3233,
+        roughness: 0.6,
+        metalness: 0.8,
+        clearCoat: 1,
+        clearCoatRoughness: 0,
+        reflectivity: 1,
+        envMapIntensity: .8
+    },
+    {
+        code: 'G1F',
+        name: 'Ceramic Matrix Gray',
+        color: 0xC0CDDA,
+        roughness: 0.6,
+        metalness: 0.7,
+        clearCoat: 1,
+        clearCoatRoughness: 0,
+        reflectivity: 1,
+        envMapIntensity: .7
+    },
+    {
+        code: 'GAN',
+        name: 'Blade Silver Metallic',
+        color: 0xC6CCD2,
+        roughness: 0.6,
+        metalness: 0.9,
+        clearCoat: 1,
+        clearCoatRoughness: 0,
+        reflectivity: 1,
+        envMapIntensity: 0.7
+    },
+    {
+        code: 'GTR',
+        name: 'Admiral Blue Metallic',
+        color: 0x13377C,
+        roughness: 0.6,
+        metalness: 0.9,
+        clearCoat: 1,
+        clearCoatRoughness: 0,
+        reflectivity: 1,
+        envMapIntensity: 0.6
+    },
+    {
+        code: 'G1G',
+        name: 'Longbeach Red Metallic Tintcoat',
+        color: 0x7C1E27,
+        roughness: .6,
+        metalness: .2,
+        clearCoat: 1,
+        clearCoatRoughness: 0,
+        reflectivity: 0,
+        envMapIntensity: .6
+    },
 ];
+
+this.wheelTexture = this.loaderc.load('../textures/model/exterior/rubber_tread_' + this.textureformat + '.ktx', function (texture) {
+    texture.magFilter = THREE.LinearFilter;
+    texture.minFilter = THREE.LinearFilter;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.repeat.set(1.3, 1);
+    texture.offset.set(0.36, 1);
+});
+this.discTexture = this.loaderc.load('../textures/model/exterior/brake_disc_' + this.textureformat + '.ktx', function (texture) {
+    texture.magFilter = THREE.LinearFilter;
+    texture.minFilter = THREE.LinearFilter;
+});
+this.wheelTexture2 = this.loaderc.load('../textures/model/exterior/rubber_shell_' + this.textureformat + '.ktx', function (texture) {
+    texture.repeat.set(1.01, 1.01);
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.magFilter = THREE.LinearFilter;
+    texture.minFilter = THREE.LinearFilter;
+});
+
 
 function CreateMaterialLibrary(mainWindow) {
     this.matSimple = new THREE.MeshStandardMaterial({
@@ -339,7 +450,7 @@ function CreateMaterialLibrary(mainWindow) {
     });
     this.physicalMaterial = this.matPaint;
 
-    loadHDRReflection (mainWindow.renderer)
+    loadHDRReflection(mainWindow.renderer)
 }
 
 function loadHDRReflection(renderer) {
@@ -523,8 +634,8 @@ function assignMaterials(model) {
 
     }
 
-    for(var i=0; i<model.children.length; i++){
-        if(model.children[i].material==undefined) {
+    for (var i = 0; i < model.children.length; i++) {
+        if (model.children[i].material == undefined) {
             model.children[i].material = this.matSimple
         }
     }

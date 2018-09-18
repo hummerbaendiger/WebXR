@@ -191,8 +191,9 @@ function setupHelperGroups(mainWindow) {
 
     mainWindow.modelRoot = new THREE.Group();
     mainWindow.modelRoot.name = "CorvetteRoot"
+    //mainWindow.modelRoot.rotation.set(-0.995,-0.5,0)
     mainWindow.modelRoot.scale.set(0.01,0.01,0.01)
-    //mainWindow.modelRoot.position.set(-5,-7,-3)
+    //mainWindow.modelRoot.position.set(-3,-7,-3)
     mainWindow.modelRoot.position.set(-4, -1, -3)
 
     mainWindow.pivotWheelFL = new THREE.Group();
