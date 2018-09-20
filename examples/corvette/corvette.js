@@ -44,9 +44,9 @@ class PageApp extends ThingsOnSurfacesApp {
 		
 		//this.LoadGeometry("../models/newglb/corvette.glb", this)
 		this.LoadGeometry("../models/newglb/exterior.glb", this)
-		this.LoadGeometry("../models/newglb/q8u.glb", this)
+		//this.LoadGeometry("../models/newglb/q8u.glb", this)
 		this.LoadGeometry("../models/newglb/j56_front.glb", this)
-		this.LoadGeometry("../models/newglb/j56_rear.glb", this)
+		//this.LoadGeometry("../models/newglb/j56_rear.glb", this)
 		this.LoadGeometry("../models/newglb/interior.glb", this)
 		
 

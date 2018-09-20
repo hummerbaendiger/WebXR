@@ -257,9 +257,9 @@ function setupHelperGroups(mainWindow) {
     mainWindow.model = new THREE.Group();
     mainWindow.model.name = "CorvetteRoot"
     mainWindow.model.scale.set(0.01, 0.01, 0.01)
-    //mainWindow.model.rotation.set(-0.995, -0.5, 0)
+    //mainWindow.model.rotation.set(-0.995, -0.68, 0)
     //mainWindow.model.position.set(-3, -7, -3)
-    mainWindow.model.position.set(-4, -1, -3)
+    //mainWindow.model.position.set(-4, -1, -3)
 
     mainWindow.pivotWheelFL = new THREE.Group();
     mainWindow.pivotWheelFR = new THREE.Group();
@@ -293,10 +293,9 @@ function setupHelperGroups(mainWindow) {
     mainWindow.pivotWheelFL.position.x = 139;
     mainWindow.pivotWheelFL.position.y = 54.3;
     mainWindow.pivotWheelFL.position.z = 81;
-    mainWindow.pivotWheelFL.scale.set(.95, .95, .85);
+    //mainWindow.pivotWheelFL.scale.set(.95, .95, .85);
     mainWindow.pivotWheelFL.rotation.y = THREE.Math.degToRad(30);
     mainWindow.model.add(mainWindow.pivotWheelFL);
-    //               
 
     mainWindow.pivotWheelFR.position.x = 139;
     mainWindow.pivotWheelFR.position.y = 54.3;
