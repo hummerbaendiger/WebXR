@@ -491,9 +491,12 @@ function assignMaterials(model) {
         for (var i = 0; i < model.children.length; i++)
             model.children[i].material = this.matPaint;
     } else if (model.name == 'trunk') {
-        model.children[0].material = this.matPaint;
-        model.children[1].material = this.matWindowPrivat;
-        model.children[2].material = this.matBlack;
+        model.children[1].material = this.matPrimer;
+        model.children[2].material = this.matPaint;
+        model.children[0].material = this.matAlu;
+
+        model.children[3].material = this.matWindowPrivat;
+        model.children[4].material = this.matBlack;
     } else if (model.name == 'black') {
         model.children[0].material = this.matBlack;
     } else if (model.name == 'front') {
@@ -502,7 +505,7 @@ function assignMaterials(model) {
         model.children[1].material = this.matWindow;
         model.children[2].material = this.matPrimer;
         model.children[3].material = this.matPlasticDark;
-        model.children[4].material = this.matPlastic;
+        model.children[4].material = this.matPlasticDark;
         model.children[5].material = this.matPlasticDark;
         model.children[6].material = this.matPlasticGloss;
         model.children[7].material = this.matChrome;
@@ -566,8 +569,13 @@ function assignMaterials(model) {
         model.children[2].material = this.matPlastic;
         model.children[3].material = this.matPlasticDark;
         model.children[4].material = this.matPlasticGloss;
+        model.children[5].material = this.matChrome;
+        model.children[6].material = this.matAlu;
+        model.children[7].material = this.matLogoRed;
+        model.children[8].material = this.matLogoYellow;
+        model.children[9].material = this.matPlasticGloss;
         model.children[10].material = this.matPlasticGloss;
-        model.children[11].material = this.matPlasticGloss;
+        model.children[11].material = this.matPlasticDark;
         model.children[12].material = this.matPlasticGloss;
         model.children[13].material = this.matLogoRed;
         model.children[14].material = this.matAlu;
@@ -579,11 +587,13 @@ function assignMaterials(model) {
         model.children[20].material = this.matPlasticGloss;
         model.children[21].material = this.matPlasticGloss;
         model.children[22].material = this.matPlasticGloss;
-        model.children[23].material = this.matPlastic;
+        model.children[23].material = this.matPlasticDark;
         model.children[24].material = this.matPlasticGloss;
         model.children[25].material = this.matWindowPrivat;
         model.children[26].material = this.matBlack;
         model.children[27].material = this.matPrimer;
+        model.children[28].material = this.matPrimer;
+        model.children[29].material = this.matPrimer;
     } else if (model.name == 'brake_front') {
         model.children[0].material = this.matAlu;
         model.children[1].material = this.matCaliper;
@@ -599,16 +609,39 @@ function assignMaterials(model) {
         model.children[4].material = this.matDisk;
         model.children[5].material = this.matAluDark;
         model.children[6].material = this.matAlu;
+    } else if (model.name == 'j56_front' || model.name == 'j57_front' || model.name == 'j57_rear') {
+        model.children[0].material = this.matAlu;
+        model.children[1].material = this.matCaliper;
+        model.children[2].material = this.matCaliperLogo;
+        if (model.name == 'j57_front')
+            model.children[3].material = this.matDisk2;
+        else
+            model.children[3].material = this.matDisk;
+        model.children[4].material = this.matAluDark;
+        model.children[5].material = this.matAlu;
+    } else if (model.name == 'j56_rear') {
+        model.children[0].material = this.matAlu;
+        model.children[1].material = this.matAlu;
+        model.children[2].material = this.matCaliper;
+        model.children[3].material = this.matCaliperLogo;
+        model.children[4].material = this.matDisk;
+        model.children[5].material = this.matAluDark;
+        model.children[6].material = this.matAlu;
     } else if (model.name == 'door') {
         for (var i = 0; i < model.children.length; i++)
             model.children[i].material = this.matPaint;
-        model.children[1].material = this.matPrimer;
-        model.children[2].material = this.matPlasticGloss;
+        model.children[0].material = this.matPrimer;
+        model.children[1].material = this.matAlloy;
         model.children[3].material = this.matPlastic;
-        model.children[4].material = this.matPlasticGloss;
-        model.children[5].material = this.matAluDark;
-        model.children[6].material = this.matMirrorGlas;
-        model.children[7].material = this.matWindow;
+        model.children[4].material = this.matPrimer;
+        model.children[5].material = this.matPlasticGloss;
+        model.children[6].material = this.matPrimer;
+        model.children[7].material = this.matAluDark;
+        model.children[8].material = this.matAluDark;
+        model.children[9].material = this.matPlasticDark;
+        model.children[12].material = this.matAlu;
+        model.children[12].material = this.matMirrorGlas;
+        model.children[13].material = this.matGlas;
     } else if (model.name == 'windowpane') {
         model.children[0].material = this.matWindow;
         model.children[1].material = this.matWindow;
@@ -632,6 +665,123 @@ function assignMaterials(model) {
             model.children[11].material = this.matTread;
         }
 
+    } else if (model.name == 'seat') {
+        for (var i = 0; i < model.children.length; i++)
+            model.children[i].material = this.matPlasticDark;
+        model.children[1].material = this.matCarbon;
+        model.children[3].material = this.matLogoWhite;
+        model.children[3].material = this.matLogoRed;
+        model.children[5].material = this.matLeather;
+        model.children[6].material = this.matLeather;
+        model.children[7].material = this.matPlasticGloss;
+        model.children[8].material = this.matChrome;
+        model.children[9].material = this.matLogoRed;
+        model.children[10].material = this.matBelt;
+        model.children[11].material = this.matChrome;
+    } else if (model.name == 'center_console') {
+        for (var i = 0; i < model.children.length; i++)
+            model.children[i].material = this.matLeather;
+        //                                        model.children[1].material = this.matBlack;
+        model.children[3].material = this.matChrome;
+        //                                        model.children[5].material = this.matDecor;
+        model.children[13].material = this.matPlasticDark;
+        model.children[14].material = this.matDecor;
+        model.children[17].material = this.matLogoRed;
+        model.children[18].material = this.matLogoRed;
+        model.children[19].material = this.matPlasticDark;
+        model.children[21].material = this.matSeam;
+        //                                        model.children[22].material = this.matChrome;
+        model.children[24].material = this.matPlasticGloss;
+        model.children[26].material = this.matChrome;
+        model.children[27].material = this.matChrome;
+        model.children[28].material = this.matPlasticGloss;
+        //                                        model.children[7].material = this.matLogoWhite;
+    } else if (model.name == 'roof_ground') {
+        for (var i = 0; i < model.children.length; i++)
+            model.children[i].material = this.matPrimer;
+        model.children[0].material = this.matLogoRed;
+        model.children[3].material = this.matCarpet;
+        model.children[4].material = this.matChrome;
+        model.children[5].material = this.matLeather;
+        model.children[6].material = this.matLogoWhite;
+        model.children[7].material = this.matLogoWhite;
+        model.children[9].material = this.matMirrorGlas;
+        //                                        model.children[10].material = this.matMirrorGlas;
+        model.children[11].material = this.matAlu;
+        model.children[18].material = this.matAlu;
+        //                                        console.log(model.children[3].material);
+
+    } else if (model.name == 'cockpit') {
+        for (var i = 0; i < model.children.length; i++)
+            model.children[i].material = this.matPlasticDark;
+        model.children[0].material = this.matSpeaker;
+        model.children[1].material = this.matLeather;
+        model.children[2].material = this.matDecor;
+        model.children[6].material = this.matChrome;
+        model.children[8].material = this.matBlack;
+        model.children[9].material = this.matSeam;
+        model.children[12].material = this.matBlack;
+        model.children[13].material = this.matPlasticGloss;
+        model.children[15].material = this.matPlasticGloss;
+        model.children[16].material = this.matLogoRed;
+        model.children[17].material = this.matLogoWhite;
+        model.children[18].material = this.matLogoWhite;
+        model.children[19].material = this.matPlasticGloss;
+        model.children[20].material = this.matLogoRed;
+        model.children[21].material = this.matLogoBlue;
+        model.children[23].material = this.matLogoWhite;
+        model.children[24].material = this.matPlasticGloss;
+    } else if (model.name == 'door_inside') {
+        for (var i = 0; i < model.children.length; i++)
+            model.children[i].material = this.matLeather;
+        model.children[1].material = this.matBlack;
+        model.children[3].material = this.matDecor;
+        model.children[5].material = this.matDecor;
+        model.children[6].material = this.matPlasticDark;
+        model.children[7].material = this.matLogoWhite;
+    } else if (model.name == 'steering') {
+        for (var i = 0; i < model.children.length; i++)
+            model.children[i].material = this.matLeather;
+        model.children[0].material = this.matLogoRed;
+        model.children[1].material = this.matCarbon;
+        model.children[2].material = this.matSeam;
+        model.children[3].material = this.matDecor;
+        model.children[4].material = this.matPlasticGloss;
+        model.children[5].material = this.matChrome;
+        model.children[6].material = this.matBlack;
+        model.children[7].material = this.matLogoYellow;
+        model.children[8].material = this.matLogoRed;
+        model.children[9].material = this.matLogoWhite;
+        model.children[11].material = this.matPlasticDark;
+    } else if (model.name == 'q6x') {
+        for (var i = 0; i < model.children.length; i++)
+            model.children[i].material = this.matAluDark;
+        model.children[1].material = this.matStripe;
+        model.children[0].material = this.matAlloyDark;
+        model.children[2].material = this.matAlu;
+        model.children[3].material = this.matAlu;
+        model.children[4].material = this.matLogoWhite;
+        model.children[5].material = this.matLogoRed;
+        model.children[6].material = this.matAlloyDark;
+        model.children[7].material = this.matPlastic;
+        model.children[8].material = this.matLogoYellow;
+        model.children[9].material = this.matPlastic;
+        model.children[10].material = this.matTire;
+        model.children[11].material = this.matTread;
+    } else if (model.name == 'q8u') {
+        for (var i = 0; i < model.children.length; i++)
+            model.children[i].material = this.matAluDark;
+        model.children[0].material = this.matAlloy;
+        model.children[1].material = this.matAlu;
+        model.children[2].material = this.matPlastic;
+        model.children[3].material = this.matLogoWhite;
+        model.children[4].material = this.matLogoRed;
+        model.children[5].material = this.matAlu;
+        model.children[6].material = this.matPlasticGloss;
+        model.children[7].material = this.matLogoYellow;
+        model.children[8].material = this.matAlu;
+        model.children[9].material = this.matTire;
+        model.children[10].material = this.matTread;
     }
 
     for (var i = 0; i < model.children.length; i++) {

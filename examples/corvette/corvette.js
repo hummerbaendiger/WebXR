@@ -2,25 +2,19 @@ class PageApp extends ThingsOnSurfacesApp {
 	constructor(domElement) {
 		super(domElement, false)
 		this.clock = new THREE.Clock()
-		this.meshes = []
+		
 		this.clonemeshes = []
 		this.geometries = []
-		this.femaleGeometry = null
-		this.maleGeometry = null
-		this.corvetteModel = null
-		this.corvetteMeshes = []
-
-		this.childNode = null
-
+		this.meshes =[]
 		this.initialized = false
 
 		var _this = this
 
 		this.wheelFL, this.wheelFR, this.wheelRL, this.wheelRR;
-        this.pivotWheelFL, this.pivotWheelFR, this.pivotWheelRL, this.pivotWheelRR;
-        this.pivotWheelFLRot, this.pivotWheelFRRot, this.pivotWheelRLRot, this.pivotWheelRRRot;
+		this.pivotWheelFL, this.pivotWheelFR, this.pivotWheelRL, this.pivotWheelRR;
+		this.pivotWheelFLRot, this.pivotWheelFRRot, this.pivotWheelRLRot, this.pivotWheelRRRot;
 
-		this.modelRoot
+		this.model
 
 		this.colors = [
 			0xff4422,
@@ -37,42 +31,31 @@ class PageApp extends ThingsOnSurfacesApp {
 
 
 		this.manager = new THREE.LoadingManager()
-		const gltfLoader = new THREE.GLTFLoader()
+		this.gltfLoader = new THREE.GLTFLoader()
 
 		THREE.DRACOLoader.setDecoderPath("../../threeJS/js/libs/draco/")
 		this.dracoLoader = new THREE.DRACOLoader()
-		gltfLoader.setDRACOLoader(this.dracoLoader)
-
-
+		this.gltfLoader.setDRACOLoader(this.dracoLoader)
 
 		const loader = new THREE.BinaryLoader()
-		/*loader.load('../models/female02/Female02_bin.js', geometry => {
-			this.femaleGeometry = geometry
-			this.geometries.push(this.femaleGeometry)
-
-			// Add a first model so that it's clear that the scene is running and before hit testing can find an anchor
-			let firstNode = this.createSceneGraphNode()
-			firstNode.position.set(0, 0, -2)
-			this.floorGroup.add(firstNode)
-		})
-		loader.load('../models/male02/Male02_bin.js', geometry => {
-			this.maleGeometry = geometry
-			this.geometries.push(this.maleGeometry)
-		})*/
 
 		CreateMaterialLibrary(this)
+		setupHelperGroups(this)
+		
+		//this.LoadGeometry("../models/newglb/corvette.glb", this)
+		this.LoadGeometry("../models/newglb/exterior.glb", this)
+		this.LoadGeometry("../models/newglb/q8u.glb", this)
+		this.LoadGeometry("../models/newglb/j56_front.glb", this)
+		this.LoadGeometry("../models/newglb/j56_rear.glb", this)
+		this.LoadGeometry("../models/newglb/interior.glb", this)
+		
 
+	}
 
-		gltfLoader.load("../models/glb/corvette.glb", obj => {
-			this.corvetteModel = obj
-			var parent
+	
 
-			
-			
-			
-
-			setupHelperGroups(this)
-
+	LoadGeometry(modelPath, mainWindow) {
+		mainWindow.gltfLoader.load(modelPath, obj => {
 
 			//recursively collect all child meshes into the this.meshes array
 			function getMeshes(obj) {
@@ -82,86 +65,25 @@ class PageApp extends ThingsOnSurfacesApp {
 							if (obj[k].type != "Mesh") {
 								getMeshes(obj[k].children)
 							} else {
-								_this.meshes.push(obj[k]);
+								mainWindow.meshes.push(obj[k]);
 							}
 						}
 					}
 				}
 			}
-			
-
 			parent = obj.scene;
-			//console.log(obj.scene.children.length);
 			for (var i = 0; i < obj.scene.children.length; i++) {
 				var objName = obj.scene.children[i].name;
-				objName = objName.slice(0, -3);
-				_this.meshes = [];
+				if (objName.endsWith("obj")) objName = objName.slice(0, -3);
+				mainWindow.meshes = [];
 				getMeshes(obj.scene.children[i].children);
-				prepareData(objName, _this.meshes, this);
+				prepareData(objName, mainWindow.meshes, mainWindow);
 
 			}
-
-			//this.geometries.push(this.modelRoot)
-
-			//loadHDRReflection(this.renderer)
-
-
-			/*for (var i = 0; i < obj.scene.children.length; i++) {
-
-				var objName = obj.scene.children[i].name
-				objName = objName.slice(0, -3)
-				obj.scene.children[i].name = objName
-				this.corvetteMeshes.push(obj.scene.children[i])
-
-				assignMaterials(obj.scene.children[i])
-			}*/
-
-
-
-
-
-			// Adds all single meshes
-			/*this.corvetteModel.scene.traverse( child => {
-				this.childNode = child
-				if (child.isMesh) {
-					this.corvetteMeshes.push(this.childNode)
-				}
-			})*/
 		})
-
-		//this.composer = new THREE.EffectComposer(this.renderer)
-		//this.composer.addPass(new THREE.RenderPass(this.scene, this.camera))
-		//this.composer.addPass(new THREE.BloomPass(0.75))
-		//let filmPass = new THREE.FilmPass(0.5, 0.5, 1448, false)
-		//filmPass.renderToScreen = true
-		//this.composer.addPass(filmPass)
-
-
-
-
-
-		this.meshes = [];
-
-
-
-
+		mainWindow.meshes = [];
 	}
 
-	/*addCorvetteMeshes() {
-		if (this.corvetteMeshes.length == 0) return
-
-		var corvetteGroup = new THREE.Group()
-		for (var i = 0; i < this.corvetteMeshes.length; i++) {
-			corvetteGroup.add(this.corvetteMeshes[i])
-			this.initialized = true
-		}
-		corvetteGroup.scale.set(0.01, 0.01, 0.01)
-		corvetteGroup.position.set(-4,-5,-3)
-		//corvetteGroup.position.set(-4, -1.6, -3)
-		this.scene.add(corvetteGroup)
-
-
-	}*/
 
 	updateScene(frame) {
 		super.updateScene(frame)
@@ -287,7 +209,7 @@ class PageApp extends ThingsOnSurfacesApp {
 
 	createSceneGraphNode() {
 		const group = new THREE.Group()
-		group.add(this.modelRoot)
+		group.add(this.model)
 		/*group.add(this.createMesh(
 			this.geometries[Math.floor(this.geometries.length * Math.random())],
 			0.006,
